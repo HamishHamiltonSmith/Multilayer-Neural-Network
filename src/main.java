@@ -34,6 +34,7 @@ class Main {
         //NOTE: you need to add .0 at the end of change if you are using an integer (eg:5.0)
         Double change = 1.0;
         
+        //Notice how the network trains on the function up to x=20, you can increase this to approximate more, but note accuracy will go down
         for (var i = 0.0; i<20; i+=change){
             x.add(i);
 
