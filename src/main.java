@@ -28,14 +28,23 @@ class Main {
         x = new ArrayList<>();
         y = new ArrayList<>();
 
-        for (var i = 0.0; i<20; i+=0.5){
+        //This is a very important variable. The harsher/steeper your polynomial, the smaller change should be.
+        //So if your equation were to become 0.3*-i*i change should be around 0.1 to 0.5.
+        
+        //NOTE: you need to add .0 at the end of change if you are using an integer (eg:5.0)
+        Double change = 1.0;
+        
+        for (var i = 0.0; i<20; i+=change){
             x.add(i);
 
             //Change this statement to edit the training data
             y.add(0.05*-i*i);
         }
 
-        nw.train(x,y,1000);
+        //Whilst 1000 epochs seems large, the optimization function is fast but a little blunt, so whilst the network will still train
+        //quickly (around 5s here) it needs more epochs to develop accuracy.
+        Integer epochs = 1000;
+        nw.train(x,y,epochs);
 
         ArrayList<Double> inp = new ArrayList<>();
         ArrayList<Double> input = new ArrayList<>();
