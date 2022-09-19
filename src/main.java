@@ -28,7 +28,7 @@ class Main {
         x = new ArrayList<>();
         y = new ArrayList<>();
 
-        for (var i = 0.0; i<20; i++){
+        for (var i = 0.0; i<20; i+=0.5){
             x.add(i);
 
             //Change this statement to edit the training data
