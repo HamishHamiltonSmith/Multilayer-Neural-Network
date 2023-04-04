@@ -1,6 +1,9 @@
 //Configuration file where the network is created
+//NOTE - Currently a callback is active
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 class Main {
@@ -28,24 +31,24 @@ class Main {
         x = new ArrayList<>();
         y = new ArrayList<>();
 
-        //This is a very important variable. The harsher/steeper your polynomial, the smaller change should be.
-        //So if your equation were to become 0.3*-i*i change should be around 0.1 to 0.5.
         
-        //NOTE: you need to add .0 at the end of change if you are using an integer (eg:5.0)
-        Double change = 1.0;
+        int change = 1;
+
+        List<Double> dataset = Arrays.asList(new Double[]{1.0, 1.5, 0.9, 3.0, 5.0, 8.0, 10.0, 12.0, 13.0,13.4,13.0, 10.0, 3.5});
         
         //Notice how the network trains on the function up to x=20, you can increase this to approximate more, but note accuracy will go down
-        for (var i = 0.0; i<20; i+=change){
-            x.add(i);
+        for (int i = 0; i<dataset.size(); i+=change){
+            x.add(Double.valueOf(i));
 
             //Change this statement to edit the training data
-            y.add(0.05*-i*i);
+            y.add(dataset.get(i));
         }
 
         //Whilst 1000 epochs seems large, the optimization function is fast but a little blunt, so whilst the network will still train
         //quickly (around 5s here) it needs more epochs to develop accuracy.
         Integer epochs = 1000;
         nw.train(x,y,epochs);
+ 
 
         ArrayList<Double> inp = new ArrayList<>();
         ArrayList<Double> input = new ArrayList<>();
@@ -54,7 +57,7 @@ class Main {
 
         input.add(0.0);
         
-        for (var i = 0.0; i<20; i+=1){
+        for (var i = 0.0; i<40; i+=0.2){
             input.set(0,i);
 
             inp.add(i);
