@@ -1,4 +1,4 @@
-# Neural network for polynomail regression
+# Neural network for polynomial regression
 
 ## Intro
 
