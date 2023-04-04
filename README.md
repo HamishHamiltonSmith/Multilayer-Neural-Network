@@ -21,7 +21,7 @@ To create a new layer, use the Layer class, (`new Layer(size,prevsize,type,activ
 
 ## Behind the scenes
 
-Now for the best bit. Firstly, I'm not going to explain everything about how a neural network works here, however, this site provides a fantastic and in-depth analysis of how neural networks work: http://neuralnetworksanddeeplearning.com/. 
+Now for the best bit. Firstly, I'm not going to explain everything about how a neural network works here - but there are many places which can explain the basics - other than optimazation they a remarkably simple at heart.
 
 The network starts by randomly initialising its parameters (between 0 and 1) and then selecting random input samples along with their corresponding outputs. These along with all network parameters (weights and biases) are passed to the SGD algorithm (schotastic gradient descent). This basically looks at how tweaking network parameters effects the cost function (MSE), and figures out the downward direction for each cost variable through the use of multivariable calculus. 
 
