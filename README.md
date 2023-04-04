@@ -31,3 +31,4 @@ I have made a visualisation for this which you can see here: https://replit.com/
 ## Examples
 
 ![Example](https://github.com/HamishHamiltonSmith/Multilayer-Neural-Network/blob/main/examples/Screenshot%202022-09-06%2019.33.46.png)
+![Example](https://github.com/HamishHamiltonSmith/Multilayer-Neural-Network/blob/main/examples/Screenshot%202023-04-04%2011.57.02%20AM.png)
