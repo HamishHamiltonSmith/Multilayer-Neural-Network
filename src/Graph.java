@@ -24,7 +24,7 @@ public class Graph extends JFrame{
 
         this.width = 1700;
         this.height = 900;
-        this.mod = 50;
+        this.mod = 25;
 
         this.xTrain = input;
         this.yTrain = output;
@@ -37,7 +37,6 @@ public class Graph extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("Graph results");
         setVisible(true);
-
     }
 
 
@@ -65,7 +64,7 @@ public class Graph extends JFrame{
         g2.drawString("Results", 30, 70);
 
         g2.setFont(new Font("monospaced",Font.PLAIN,40));
-        g2.drawString("Green = Ai fit    Red = Actaull values",30,120);
+        g2.drawString("Green = AI fit    Red = Actuall values",30,120);
         
 
     
@@ -96,6 +95,25 @@ public class Graph extends JFrame{
 
         }
 
+        //Data points
+
+        g2.setColor(Color.RED);
+        for (var x = 0; x<xTrain.size(); x++){
+
+            Double px;
+            Double py;
+
+            px = this.width/2+xTrain.get(x)*mod.doubleValue()-5;
+            py = (this.height/2+50)+yTrain.get(x)*-mod-5;
+
+            point = new Ellipse2D.Double(px,py,10,10);
+
+            if (py > this.height/6){
+                g2.fill(point);
+            }
+
+        }
+
         //Original data
         g2.setColor(Color.GREEN);
         g2.setStroke(new BasicStroke(4));
@@ -112,24 +130,6 @@ public class Graph extends JFrame{
         }
 
         
-        //Data points
-
-        g2.setColor(Color.RED);
-        for (var x = 0; x<xResult.size(); x+=1){
-
-            Double px;
-            Double py;
-
-            px = this.width/2+xTrain.get(x)*mod.doubleValue()-5;
-            py = (this.height/2+50)+yTrain.get(x)*-mod-5;
-
-            point = new Ellipse2D.Double(px,py,10,10);
-
-            if (py > this.height/6){
-                g2.fill(point);
-            }
-
-        }
     }
 
 
