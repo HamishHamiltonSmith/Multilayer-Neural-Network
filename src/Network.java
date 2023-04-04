@@ -3,6 +3,8 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.*;
+import java.util.*;
 
 public class Network {
 
@@ -25,6 +27,8 @@ public class Network {
             
             vars += this.layers.get(x).vars;
         }
+
+        System.out.println(vars);
     }
 
     public void structure(){
@@ -38,6 +42,43 @@ public class Network {
 
     public void showLayer(int index){
         System.out.println(this.layers.get(index).neurons.toString());
+    }
+
+    public void saveAll(String path){
+        File f = new File(path);
+
+        try {
+            f.createNewFile();
+
+            FileWriter fw = new FileWriter(f);
+            fw.write(fullNetwork.toString());
+            fw.close();
+        } catch (Exception e){
+            System.out.println("Error: " + e);
+        }
+
+    }
+
+    public void loadNW(String path){
+        File f = new File(path);
+
+        try {
+            String data = "";
+
+            Scanner fr = new Scanner(f);
+            while (fr.hasNextLine()) {
+              data += fr.nextLine() + "\n";
+            }
+
+            System.out.println(data);
+
+            fr.close();
+            
+
+        } catch (Exception e){
+            System.out.println("Error: " + e);
+        }
+
     }
 
     public void resetBool(){
@@ -56,7 +97,7 @@ public class Network {
         }
     }
 
-    public void SGD(ArrayList<Double> inputs, ArrayList<Double> expected){
+    public String SGD(ArrayList<Double> inputs, ArrayList<Double> expected){
 
         Double dx = 0.000000001;
         Double rate = 0.001;
@@ -71,6 +112,7 @@ public class Network {
             if (count >= vars){
                 resetBool();
                 System.out.println("Cost: " + C(inputs,expected,fullNetwork));
+
                 break;
             }
 
@@ -97,7 +139,7 @@ public class Network {
 
                             parDerivative = (v2-v1)/dx;
 
-                            if (parDerivative > -0.07 && parDerivative < 0.07){
+                            if (parDerivative > -0.005 && parDerivative < 0.005){
                                 fullBool.get(x).get(y).get(0).set(i,true);
                                 count++;
                             } else if (parDerivative > 0){
@@ -121,7 +163,7 @@ public class Network {
 
                         
 
-                        if (parDerivative > -0.07 && parDerivative < 0.07){
+                        if (parDerivative > -0.005 && parDerivative < 0.005){
                             count++;
                             fullBool.get(x).get(y).get(1).set(0,false);
                         } else if (parDerivative > 0){
@@ -133,6 +175,8 @@ public class Network {
                 }
             }
         }
+
+        return "NaN";
     }
 
     public Double C(ArrayList<Double> inputs, ArrayList<Double> expected, ArrayList<ArrayList<ArrayList<ArrayList<Double>>>> modNetwork){
@@ -171,7 +215,10 @@ public class Network {
                 batchExpected.add(yTrain.get(c));
             }
 
-            SGD(inputs,batchExpected);
+            String res = SGD(inputs,batchExpected);
+            if (res == "B"){
+                break;
+            }
         }
 
 
